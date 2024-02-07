@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.android
+package com.ovidiucristurean.groceries
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
