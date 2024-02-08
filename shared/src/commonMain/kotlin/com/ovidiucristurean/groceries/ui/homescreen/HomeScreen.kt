@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.ui
+package com.ovidiucristurean.groceries.ui.homescreen
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.FloatingActionButton
@@ -7,18 +7,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
-import com.ovidiucristurean.groceries.ui.state.RecipeListItemUiState
-import com.ovidiucristurean.groceries.ui.view.RecipeList
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.ovidiucristurean.groceries.ui.AddRecipeScreen
+import com.ovidiucristurean.groceries.ui.homescreen.state.RecipeListItemUiState
+import com.ovidiucristurean.groceries.ui.homescreen.view.RecipeList
 
 class HomeScreen : Screen {
 
     @Composable
     override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             floatingActionButton = {
                 FloatingActionButton(
-                    onClick = {}
+                    onClick = {
+                        navigator.push(AddRecipeScreen())
+                    }
                 ) {
                     Text("Add recipe")
                 }
