@@ -47,6 +47,9 @@ kotlin {
                 api(libs.koin.core)
 
                 implementation(libs.sql.delight.coroutines.extensions)
+
+                //both sql delight and koin provide this as a subdependency and cause issues
+                implementation("co.touchlab:stately-common:2.0.5")
             }
         }
         val commonTest by getting {

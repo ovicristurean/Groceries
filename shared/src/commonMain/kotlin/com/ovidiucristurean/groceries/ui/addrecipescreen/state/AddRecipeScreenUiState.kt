@@ -9,3 +9,7 @@ data class AddRecipeScreenUiState(
     ),
     val addedIngredients: List<RecipeItemUiState> = emptyList()
 )
+
+sealed interface NavigationEvent {
+    data object PopBackStack : NavigationEvent
+}

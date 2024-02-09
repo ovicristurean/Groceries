@@ -6,9 +6,13 @@ import com.ovidiucristurean.groceries.domain.RecipeRepository
 import com.ovidiucristurean.groceries.domain.model.Ingredient
 import com.ovidiucristurean.groceries.domain.model.RecipeModel
 import com.ovidiucristurean.groceries.ui.addrecipescreen.state.AddRecipeScreenUiState
+import com.ovidiucristurean.groceries.ui.addrecipescreen.state.NavigationEvent
 import com.ovidiucristurean.groceries.ui.addrecipescreen.state.RecipeItemUiState
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -19,22 +23,8 @@ class AddRecipeScreenModel(
     private val _uiState = MutableStateFlow(AddRecipeScreenUiState())
     val uiState: StateFlow<AddRecipeScreenUiState> = _uiState
 
-    fun addRecipe() {
-        screenModelScope.launch {
-            recipeRepository.addRecipe(
-                RecipeModel(
-                    name = uiState.value.recipeName,
-                    ingredients = uiState.value.addedIngredients.map { recipeItem ->
-                        Ingredient(
-                            name = recipeItem.ingredient,
-                            quantity = recipeItem.quantity,
-                            measurementUnit = recipeItem.measurementUnit
-                        )
-                    }
-                )
-            )
-        }
-    }
+    private val _navigationEvent = Channel<NavigationEvent>()
+    val navigationEvent: Flow<NavigationEvent> = _navigationEvent.receiveAsFlow()
 
     fun onRecipeNameUpdated(newRecipeName: String) {
         _uiState.update {
@@ -83,6 +73,29 @@ class AddRecipeScreenModel(
                     it.add(currentIngredient)
                 }
             )
+        }
+    }
+
+    fun addRecipe() {
+        screenModelScope.launch {
+            val isAddRecipeSuccessful = recipeRepository.addRecipe(
+                RecipeModel(
+                    name = uiState.value.recipeName,
+                    ingredients = uiState.value.addedIngredients.map { recipeItem ->
+                        Ingredient(
+                            name = recipeItem.ingredient,
+                            quantity = recipeItem.quantity,
+                            measurementUnit = recipeItem.measurementUnit
+                        )
+                    }
+                )
+            )
+
+            if (isAddRecipeSuccessful) {
+                _navigationEvent.send(NavigationEvent.PopBackStack)
+            } else {
+
+            }
         }
     }
 }

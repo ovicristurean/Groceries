@@ -17,26 +17,39 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.ovidiucristurean.groceries.ui.addrecipescreen.state.NavigationEvent
 import com.ovidiucristurean.groceries.ui.addrecipescreen.state.RecipeItemUiState
 import com.ovidiucristurean.groceries.ui.addrecipescreen.view.RecipeItemView
 import com.ovidiucristurean.groceries.ui.commonview.ItemSpacer
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
+import kotlinx.coroutines.flow.collectLatest
 
 class AddRecipeScreen : Screen {
 
     @Composable
     override fun Content() {
+        val navigator = LocalNavigator.currentOrThrow
         val viewModel = getScreenModel<AddRecipeScreenModel>()
         val uiState by viewModel.uiState.collectAsState()
+
+        LaunchedEffect(Unit) {
+            viewModel.navigationEvent.collectLatest {
+                when (it) {
+                    NavigationEvent.PopBackStack -> {
+                        navigator.pop()
+                    }
+                }
+            }
+        }
 
         Column(
             modifier = Modifier.fillMaxSize()

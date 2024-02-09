@@ -9,18 +9,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.ovidiucristurean.groceries.ui.addrecipescreen.AddRecipeScreen
 import com.ovidiucristurean.groceries.ui.homescreen.view.RecipeList
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class HomeScreen : Screen, KoinComponent {
+class HomeScreen : Screen {
 
     @Composable
     override fun Content() {
-        val viewModel: HomeScreenViewModel by inject()
+        val viewModel = getScreenModel<HomeScreenViewModel>()
         val navigator = LocalNavigator.currentOrThrow
         val uiState by viewModel.uiState.collectAsState()
 
@@ -36,16 +35,6 @@ class HomeScreen : Screen, KoinComponent {
                 }
             }
         ) {
-            /*RecipeList(
-                recipes = listOf(
-                    RecipeListItemUiState("Puiul crush"),
-                    RecipeListItemUiState("Somon cu broccoli"),
-                    RecipeListItemUiState("Orez cu spanac"),
-                    RecipeListItemUiState("Paste cu branza si rosii cherry"),
-                    RecipeListItemUiState("Lasagna cu spanac"),
-                    RecipeListItemUiState("Lasagna cu dovlecel si ciuperci")
-                )
-            )*/
             RecipeList(
                 recipes = uiState.recipes
             )

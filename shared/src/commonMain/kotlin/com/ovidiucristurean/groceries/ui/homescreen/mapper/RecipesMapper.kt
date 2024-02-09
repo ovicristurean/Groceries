@@ -6,6 +6,6 @@ import com.ovidiucristurean.groceries.ui.homescreen.state.RecipeListItemUiState
 fun List<RecipeModel>.toUiState() =
     map {
         RecipeListItemUiState(
-            title = "name"
+            title = it.name
         )
     }
