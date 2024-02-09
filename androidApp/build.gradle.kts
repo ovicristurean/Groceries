@@ -45,4 +45,9 @@ dependencies {
     implementation("androidx.compose.material:material:1.5.4")
     implementation("androidx.activity:activity-compose:1.7.0")
     implementation(libs.lifecycle.compose)
+
+    //koin
+    implementation(libs.koin.compose)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android)
 }

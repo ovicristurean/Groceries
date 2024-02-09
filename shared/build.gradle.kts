@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     id("org.jetbrains.compose")
+    id("app.cash.sqldelight")
+    kotlin("plugin.serialization")
 }
 
 kotlin {
@@ -12,7 +14,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -44,8 +46,7 @@ kotlin {
                 //koin
                 api(libs.koin.core)
 
-                //@OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
-                //implementation(compose.components.resources)
+                implementation(libs.sql.delight.coroutines.extensions)
             }
         }
         val commonTest by getting {
@@ -58,7 +59,7 @@ kotlin {
                 implementation(libs.androidx.appcompat)
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.koin.android)
-                //implementation(libs.sql.delight.android)
+                implementation(libs.sql.delight.android)
             }
         }
         val androidUnitTest by getting
@@ -73,7 +74,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-                //implementation(libs.sql.delight.ios)
+                implementation(libs.sql.delight.ios)
             }
         }
     }
@@ -88,5 +89,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+sqldelight {
+    databases {
+        create("GroceriesDatabase") {
+            packageName.set("com.ovidiucristurean.groceries")
+        }
     }
 }

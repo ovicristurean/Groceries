@@ -1,0 +1,11 @@
+CREATE TABLE Recipe (
+    ingredients TEXT NOT NULL,
+    recipeName TEXT NOT NULL
+);
+
+getRecipes:
+SELECT * FROM Recipe;
+
+insertRecipe:
+INSERT INTO Recipe(recipeName, ingredients)
+VALUES (?, ?);
