@@ -14,6 +14,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.ovidiucristurean.groceries.ui.addrecipescreen.AddRecipeScreen
 import com.ovidiucristurean.groceries.ui.homescreen.view.RecipeList
+import com.ovidiucristurean.groceries.ui.shopping.ShoppingScreen
 
 class HomeScreen : Screen {
 
@@ -36,7 +37,10 @@ class HomeScreen : Screen {
             }
         ) {
             RecipeList(
-                recipes = uiState.recipes
+                recipes = uiState.recipes,
+                onRecipeSelected = {
+                    navigator.push(ShoppingScreen(it))
+                }
             )
         }
     }

@@ -80,6 +80,7 @@ class AddRecipeScreenModel(
         screenModelScope.launch {
             val isAddRecipeSuccessful = recipeRepository.addRecipe(
                 RecipeModel(
+                    id = -1L,
                     name = uiState.value.recipeName,
                     ingredients = uiState.value.addedIngredients.map { recipeItem ->
                         Ingredient(

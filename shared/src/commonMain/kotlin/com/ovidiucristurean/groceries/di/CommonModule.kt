@@ -1,16 +1,16 @@
 package com.ovidiucristurean.groceries.di
 
-import com.ovidiucristurean.groceries.GroceriesDatabase
 import com.ovidiucristurean.groceries.data.RecipeRepositoryImpl
 import com.ovidiucristurean.groceries.data.createDatabase
 import com.ovidiucristurean.groceries.domain.RecipeRepository
 import com.ovidiucristurean.groceries.ui.addrecipescreen.AddRecipeScreenModel
 import com.ovidiucristurean.groceries.ui.homescreen.HomeScreenViewModel
+import com.ovidiucristurean.groceries.ui.shopping.ShoppingScreenModel
 import org.koin.dsl.module
 
 val commonModule = module {
 
-    single<GroceriesDatabase> {
+    single {
         createDatabase(
             driverFactory = get()
         )
@@ -30,6 +30,13 @@ val commonModule = module {
 
     factory {
         HomeScreenViewModel(
+            recipeRepository = get()
+        )
+    }
+
+    factory { parameters ->
+        ShoppingScreenModel(
+            recipeId = parameters.get(),
             recipeRepository = get()
         )
     }

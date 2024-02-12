@@ -1,4 +1,5 @@
 CREATE TABLE Recipe (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     ingredients TEXT NOT NULL,
     recipeName TEXT NOT NULL
 );
@@ -7,5 +8,10 @@ getRecipes:
 SELECT * FROM Recipe;
 
 insertRecipe:
-INSERT INTO Recipe(recipeName, ingredients)
-VALUES (?, ?);
+INSERT INTO Recipe(id, recipeName, ingredients)
+VALUES (?,?, ?);
+
+getRecipeById:
+SELECT *
+FROM Recipe
+WHERE id = :id;

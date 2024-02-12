@@ -9,4 +9,6 @@ interface RecipeRepository {
 
     suspend fun addRecipe(recipe: RecipeModel): Boolean
 
+    fun getRecipe(recipeId: Long): Flow<RecipeModel>
+
 }

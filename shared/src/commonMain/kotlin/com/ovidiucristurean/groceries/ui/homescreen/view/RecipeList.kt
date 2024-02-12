@@ -20,11 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
-import com.ovidiucristurean.groceries.ui.commonview.ItemSpacer
 import com.ovidiucristurean.groceries.ui.homescreen.state.RecipeListItemUiState
 
 @Composable
-fun RecipeList(recipes: List<RecipeListItemUiState>) {
+fun RecipeList(
+    recipes: List<RecipeListItemUiState>,
+    onRecipeSelected: (Long) -> Unit
+) {
     val predefinedColors = listOf(
         Color.Cyan,
         Color.Gray,
@@ -49,7 +51,9 @@ fun RecipeList(recipes: List<RecipeListItemUiState>) {
             itemsIndexed(recipes) { index, item ->
                 Card(
                     modifier = Modifier.fillMaxWidth().padding(16.dp).height(200.dp)
-                        .clickable { },
+                        .clickable {
+                            onRecipeSelected(item.id)
+                        },
                     colors = CardDefaults.cardColors(
                         containerColor = predefinedColors[index % predefinedColors.size],
                     )
@@ -62,7 +66,6 @@ fun RecipeList(recipes: List<RecipeListItemUiState>) {
                         Text(item.title)
                     }
                 }
-                ItemSpacer()
             }
         }
     }

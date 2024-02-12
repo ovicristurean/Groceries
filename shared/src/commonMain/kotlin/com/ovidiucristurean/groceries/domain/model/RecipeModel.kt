@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RecipeModel(
+    val id: Long,
     val name: String,
     val ingredients: List<Ingredient>
 )

@@ -2,6 +2,7 @@ package com.ovidiucristurean.groceries.data
 
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
+import app.cash.sqldelight.coroutines.mapToOne
 import com.ovidiucristurean.groceries.GroceriesDatabase
 import com.ovidiucristurean.groceries.domain.RecipeRepository
 import com.ovidiucristurean.groceries.domain.model.Ingredient
@@ -26,6 +27,7 @@ class RecipeRepositoryImpl(
             .map { recipes ->
                 recipes.map { recipe ->
                     RecipeModel(
+                        id = recipe.id,
                         name = recipe.recipeName,
                         ingredients = Json.decodeFromString<List<Ingredient>>(recipe.ingredients)
                     )
@@ -36,6 +38,7 @@ class RecipeRepositoryImpl(
         try {
             withContext(Dispatchers.Default) {
                 queries.insertRecipe(
+                    null,
                     recipe.name,
                     Json.encodeToJsonElement(recipe.ingredients).toString()
                 )
@@ -46,5 +49,18 @@ class RecipeRepositoryImpl(
         }
 
         return true
+    }
+
+    override fun getRecipe(recipeId: Long): Flow<RecipeModel> {
+        return queries.getRecipeById(recipeId)
+            .asFlow()
+            .mapToOne(Dispatchers.Default)
+            .map { recipe ->
+                RecipeModel(
+                    id = recipe.id,
+                    name = recipe.recipeName,
+                    ingredients = Json.decodeFromString<List<Ingredient>>(recipe.ingredients)
+                )
+            }
     }
 }
