@@ -7,7 +7,8 @@ data class AddRecipeScreenUiState(
         quantity = "",
         measurementUnit = ""
     ),
-    val addedIngredients: List<RecipeItemUiState> = emptyList()
+    val addedIngredients: List<RecipeItemUiState> = emptyList(),
+    val description: String = ""
 )
 
 sealed interface NavigationEvent {

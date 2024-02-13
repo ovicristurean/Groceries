@@ -69,6 +69,14 @@ class ShoppingScreen(
                     viewModel.toggleIngredient(ingredientIndex, isChecked)
                 }
             )
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Text(
+                modifier = Modifier.padding(bottom = 32.dp),
+                text = uiState.description,
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
     }
 
@@ -96,10 +104,10 @@ class ShoppingScreen(
         ) {
             Image(
                 modifier = Modifier.circular().clickable(
-                    enabled = numberOfPortions>1
+                    enabled = numberOfPortions > 1
                 ) {
                     onSubtractClicked()
-                }.alpha(if(numberOfPortions>1) 1f else 0.5f),
+                }.alpha(if (numberOfPortions > 1) 1f else 0.5f),
                 painter = rememberVectorPainter(Icons.Default.ArrowDownward),
                 contentDescription = null
             )

@@ -32,7 +32,8 @@ class EditRecipeScreenModel(
                 _uiState.update {
                     it.copy(
                         recipeName = recipeModel.name,
-                        addedIngredients = recipeModel.toIngredientsUiState()
+                        addedIngredients = recipeModel.toIngredientsUiState(),
+                        description = recipeModel.description
                     )
                 }
             }
@@ -43,6 +44,14 @@ class EditRecipeScreenModel(
         _uiState.update {
             it.copy(
                 recipeName = name
+            )
+        }
+    }
+
+    fun editDescription(newDescription: String) {
+        _uiState.update {
+            it.copy(
+                description = newDescription
             )
         }
     }
@@ -96,7 +105,8 @@ class EditRecipeScreenModel(
                                 quantity = ingredientUiState.quantity.toIntOrNull() ?: 0,
                                 measurementUnit = ingredientUiState.measurementUnit
                             )
-                        }
+                        },
+                        description = uiState.value.description
                     )
                 )
             )

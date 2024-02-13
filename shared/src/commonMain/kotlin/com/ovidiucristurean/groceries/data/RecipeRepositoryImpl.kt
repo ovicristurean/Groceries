@@ -29,7 +29,8 @@ class RecipeRepositoryImpl(
                     RecipeModel(
                         id = recipe.id,
                         name = recipe.recipeName,
-                        ingredients = Json.decodeFromString<List<Ingredient>>(recipe.ingredients)
+                        ingredients = Json.decodeFromString<List<Ingredient>>(recipe.ingredients),
+                        description = recipe.description
                     )
                 }
             }
@@ -40,7 +41,8 @@ class RecipeRepositoryImpl(
                 queries.insertRecipe(
                     null,
                     recipe.name,
-                    Json.encodeToJsonElement(recipe.ingredients).toString()
+                    Json.encodeToJsonElement(recipe.ingredients).toString(),
+                    recipe.description
                 )
             }
         } catch (e: Exception) {
@@ -59,7 +61,8 @@ class RecipeRepositoryImpl(
                 RecipeModel(
                     id = recipe.id,
                     name = recipe.recipeName,
-                    ingredients = Json.decodeFromString<List<Ingredient>>(recipe.ingredients)
+                    ingredients = Json.decodeFromString<List<Ingredient>>(recipe.ingredients),
+                    description = recipe.description
                 )
             }
     }
@@ -70,7 +73,8 @@ class RecipeRepositoryImpl(
                 queries.insertRecipe(
                     id = recipe.id,
                     recipeName = recipe.name,
-                    ingredients = Json.encodeToJsonElement(recipe.ingredients).toString()
+                    ingredients = Json.encodeToJsonElement(recipe.ingredients).toString(),
+                    description = recipe.description
                 )
             }
         } catch (e: Exception) {

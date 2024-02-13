@@ -4,5 +4,6 @@ import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.RecipeItemUiStat
 
 data class EditRecipeScreenUiState(
     val recipeName: String = "",
-    val  addedIngredients: List<RecipeItemUiState> = emptyList()
+    val description: String = "",
+    val addedIngredients: List<RecipeItemUiState> = emptyList()
 )

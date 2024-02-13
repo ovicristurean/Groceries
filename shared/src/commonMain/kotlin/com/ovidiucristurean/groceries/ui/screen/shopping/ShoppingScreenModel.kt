@@ -29,7 +29,8 @@ class ShoppingScreenModel(
     ) { state, recipe, numberOfPortions, checkedIngredients ->
         state.copy(
             numberOfPortions = numberOfPortions,
-            ingredients = recipe.ingredients.toUiState(numberOfPortions, checkedIngredients)
+            ingredients = recipe.ingredients.toUiState(numberOfPortions, checkedIngredients),
+            description = recipe.description
         )
     }.stateIn(screenModelScope, SharingStarted.WhileSubscribed(5000L), ShoppingScreenUiState())
 

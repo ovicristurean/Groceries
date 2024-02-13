@@ -28,6 +28,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.ovidiucristurean.groceries.ui.commonview.RecipeDescriptionView
 import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.RecipeItemUiState
 import kotlinx.coroutines.launch
 import org.koin.core.parameter.parametersOf
@@ -63,6 +64,16 @@ class EditRecipeScreen(
                     viewModel.editRecipeName(newValue)
                 },
                 label = { Text("Recipe name") }
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            RecipeDescriptionView(
+                modifier = Modifier.fillMaxWidth(),
+                description = uiState.description,
+                onDescriptionChanged = { newValue ->
+                    viewModel.editDescription(newValue)
+                }
             )
 
             Spacer(modifier = Modifier.weight(1f))

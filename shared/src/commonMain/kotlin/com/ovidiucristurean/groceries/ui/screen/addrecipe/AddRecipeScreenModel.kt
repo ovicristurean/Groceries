@@ -12,6 +12,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.cache
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -30,6 +31,14 @@ class AddRecipeScreenModel(
         _uiState.update {
             it.copy(
                 recipeName = newRecipeName
+            )
+        }
+    }
+
+    fun onRecipeDescriptionUpdated(newDescription: String) {
+        _uiState.update {
+            it.copy(
+                description = newDescription
             )
         }
     }
@@ -85,10 +94,11 @@ class AddRecipeScreenModel(
                     ingredients = uiState.value.addedIngredients.map { recipeItem ->
                         Ingredient(
                             name = recipeItem.ingredient,
-                            quantity = recipeItem.quantity.toIntOrNull()?:0,
+                            quantity = recipeItem.quantity.toIntOrNull() ?: 0,
                             measurementUnit = recipeItem.measurementUnit
                         )
-                    }
+                    },
+                    description = uiState.value.description
                 )
             )
 

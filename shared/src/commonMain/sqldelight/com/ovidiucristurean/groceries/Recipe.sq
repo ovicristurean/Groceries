@@ -1,15 +1,16 @@
 CREATE TABLE Recipe (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     ingredients TEXT NOT NULL,
-    recipeName TEXT NOT NULL
+    recipeName TEXT NOT NULL,
+    description TEXT NOT NULL
 );
 
 getRecipes:
 SELECT * FROM Recipe;
 
 insertRecipe:
-INSERT OR REPLACE INTO Recipe(id, recipeName, ingredients)
-VALUES (?,?, ?);
+INSERT OR REPLACE INTO Recipe(id, recipeName, ingredients, description)
+VALUES (?,?, ?, ?);
 
 getRecipeById:
 SELECT *

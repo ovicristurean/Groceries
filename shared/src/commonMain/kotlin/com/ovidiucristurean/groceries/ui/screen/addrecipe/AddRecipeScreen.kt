@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -32,6 +34,7 @@ import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.NavigationEvent
 import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.RecipeItemUiState
 import com.ovidiucristurean.groceries.ui.screen.addrecipe.view.RecipeItemView
 import com.ovidiucristurean.groceries.ui.commonview.ItemSpacer
+import com.ovidiucristurean.groceries.ui.commonview.RecipeDescriptionView
 import kotlinx.coroutines.flow.collectLatest
 
 class AddRecipeScreen : Screen {
@@ -54,29 +57,30 @@ class AddRecipeScreen : Screen {
 
         Column(
             modifier = Modifier.fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-        )
-        {
-            Row(
-                modifier = Modifier.fillMaxWidth()
-                    .height(100.dp),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Recipe name",
-                    color = MaterialTheme.colorScheme.onBackground
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                TextField(
-                    value = uiState.recipeName,
-                    onValueChange = { newValue ->
-                        viewModel.onRecipeNameUpdated(newValue)
-                    },
-                    label = { Text("Recipe name") },
-                    maxLines = 1
-                )
-            }
+                .background(MaterialTheme.colorScheme.background)
+                .padding(8.dp),
+        ) {
+            TextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = uiState.recipeName,
+                onValueChange = { newValue ->
+                    viewModel.onRecipeNameUpdated(newValue)
+                },
+                label = { Text("Recipe name") },
+                maxLines = 1
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            RecipeDescriptionView(
+                modifier = Modifier.fillMaxWidth(),
+                description = uiState.description,
+                onDescriptionChanged = { newValue ->
+                    viewModel.onRecipeDescriptionUpdated(newValue)
+                }
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             AddIngredientSection(
                 modifier = Modifier.fillMaxSize().weight(1f),
