@@ -1,10 +1,10 @@
-package com.ovidiucristurean.groceries.ui.shopping
+package com.ovidiucristurean.groceries.ui.screen.shopping
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.ovidiucristurean.groceries.domain.RecipeRepository
-import com.ovidiucristurean.groceries.ui.shopping.mapper.toUiState
-import com.ovidiucristurean.groceries.ui.shopping.state.ShoppingScreenUiState
+import com.ovidiucristurean.groceries.ui.screen.shopping.mapper.toUiState
+import com.ovidiucristurean.groceries.ui.screen.shopping.state.ShoppingScreenUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -43,17 +43,6 @@ class ShoppingScreenModel(
     }
 
     fun toggleIngredient(ingredientIndex: Int, isSelected: Boolean) {
-        /*val ingredientList = uiState.value.recipe.ingredients
-        ingredientList[ingredientIndex] = ingredientList[ingredientIndex].copy(
-            isChecked = isSelected
-        )
-        _uiState.update {
-            it.copy(
-                recipe = it.recipe.copy(
-                    ingredients = ingredientList
-                )
-            )
-        }*/
         checkedIngredients.update {
             val ingredientsCopy = it.toMutableSet()
             if (isSelected) {

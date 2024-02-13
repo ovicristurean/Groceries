@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.ui.shopping
+package com.ovidiucristurean.groceries.ui.screen.shopping
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
-import com.ovidiucristurean.groceries.ui.shopping.state.IngredientUiState
+import com.ovidiucristurean.groceries.ui.screen.shopping.state.IngredientUiState
 import org.koin.core.parameter.parametersOf
 
 class ShoppingScreen(

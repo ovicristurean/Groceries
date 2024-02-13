@@ -8,7 +8,7 @@ getRecipes:
 SELECT * FROM Recipe;
 
 insertRecipe:
-INSERT INTO Recipe(id, recipeName, ingredients)
+INSERT OR REPLACE INTO Recipe(id, recipeName, ingredients)
 VALUES (?,?, ?);
 
 getRecipeById:

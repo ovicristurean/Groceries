@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.ui.addrecipescreen.view
+package com.ovidiucristurean.groceries.ui.screen.addrecipe.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

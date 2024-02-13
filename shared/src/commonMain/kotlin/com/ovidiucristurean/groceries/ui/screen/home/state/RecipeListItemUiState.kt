@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.ui.homescreen.state
+package com.ovidiucristurean.groceries.ui.screen.home.state
 
 data class RecipeListItemUiState(
     val id:Long,

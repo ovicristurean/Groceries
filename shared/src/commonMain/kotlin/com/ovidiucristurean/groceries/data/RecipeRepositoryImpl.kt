@@ -63,4 +63,22 @@ class RecipeRepositoryImpl(
                 )
             }
     }
+
+    override suspend fun editRecipe(recipe: RecipeModel):Boolean {
+        try {
+            withContext(Dispatchers.Default) {
+                queries.insertRecipe(
+                    id = recipe.id,
+                    recipeName = recipe.name,
+                    ingredients = Json.encodeToJsonElement(recipe.ingredients).toString()
+                )
+            }
+        } catch (e:Exception) {
+            if (e is CancellationException) throw e
+            return false
+        }
+
+        return true
+    }
+
 }

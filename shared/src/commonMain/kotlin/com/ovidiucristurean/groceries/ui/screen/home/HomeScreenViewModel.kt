@@ -1,10 +1,10 @@
-package com.ovidiucristurean.groceries.ui.homescreen
+package com.ovidiucristurean.groceries.ui.screen.home
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.ovidiucristurean.groceries.domain.RecipeRepository
-import com.ovidiucristurean.groceries.ui.homescreen.mapper.toUiState
-import com.ovidiucristurean.groceries.ui.homescreen.state.HomeScreenUiState
+import com.ovidiucristurean.groceries.ui.screen.home.mapper.toUiState
+import com.ovidiucristurean.groceries.ui.screen.home.state.HomeScreenUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

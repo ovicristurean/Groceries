@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.ui.shopping.state
+package com.ovidiucristurean.groceries.ui.screen.shopping.state
 
 data class ShoppingScreenUiState(
     val numberOfPortions: Int = 1,

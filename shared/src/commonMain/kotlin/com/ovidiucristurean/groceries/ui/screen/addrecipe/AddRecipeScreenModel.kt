@@ -1,13 +1,13 @@
-package com.ovidiucristurean.groceries.ui.addrecipescreen
+package com.ovidiucristurean.groceries.ui.screen.addrecipe
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.ovidiucristurean.groceries.domain.RecipeRepository
 import com.ovidiucristurean.groceries.domain.model.Ingredient
 import com.ovidiucristurean.groceries.domain.model.RecipeModel
-import com.ovidiucristurean.groceries.ui.addrecipescreen.state.AddRecipeScreenUiState
-import com.ovidiucristurean.groceries.ui.addrecipescreen.state.NavigationEvent
-import com.ovidiucristurean.groceries.ui.addrecipescreen.state.RecipeItemUiState
+import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.AddRecipeScreenUiState
+import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.NavigationEvent
+import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.RecipeItemUiState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

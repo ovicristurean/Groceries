@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.ui.homescreen
+package com.ovidiucristurean.groceries.ui.screen.home
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.FloatingActionButton
@@ -12,9 +12,11 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.ovidiucristurean.groceries.ui.addrecipescreen.AddRecipeScreen
-import com.ovidiucristurean.groceries.ui.homescreen.view.RecipeList
-import com.ovidiucristurean.groceries.ui.shopping.ShoppingScreen
+import com.ovidiucristurean.groceries.ui.screen.addrecipe.AddRecipeScreen
+import com.ovidiucristurean.groceries.ui.screen.editrecipe.EditRecipeScreen
+import com.ovidiucristurean.groceries.ui.screen.editrecipe.EditRecipeScreenModel
+import com.ovidiucristurean.groceries.ui.screen.home.view.RecipeList
+import com.ovidiucristurean.groceries.ui.screen.shopping.ShoppingScreen
 
 class HomeScreen : Screen {
 
@@ -40,6 +42,9 @@ class HomeScreen : Screen {
                 recipes = uiState.recipes,
                 onRecipeSelected = {
                     navigator.push(ShoppingScreen(it))
+                },
+                onEditRecipeSelected = {
+                    navigator.push(EditRecipeScreen(it))
                 }
             )
         }

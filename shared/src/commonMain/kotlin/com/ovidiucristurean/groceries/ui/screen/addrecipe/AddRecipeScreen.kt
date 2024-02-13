@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.ui.addrecipescreen
+package com.ovidiucristurean.groceries.ui.screen.addrecipe
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,9 +27,9 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.ovidiucristurean.groceries.ui.addrecipescreen.state.NavigationEvent
-import com.ovidiucristurean.groceries.ui.addrecipescreen.state.RecipeItemUiState
-import com.ovidiucristurean.groceries.ui.addrecipescreen.view.RecipeItemView
+import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.NavigationEvent
+import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.RecipeItemUiState
+import com.ovidiucristurean.groceries.ui.screen.addrecipe.view.RecipeItemView
 import com.ovidiucristurean.groceries.ui.commonview.ItemSpacer
 import kotlinx.coroutines.flow.collectLatest
 

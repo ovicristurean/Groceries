@@ -1,7 +1,7 @@
-package com.ovidiucristurean.groceries.ui.homescreen.mapper
+package com.ovidiucristurean.groceries.ui.screen.home.mapper
 
 import com.ovidiucristurean.groceries.domain.model.RecipeModel
-import com.ovidiucristurean.groceries.ui.homescreen.state.RecipeListItemUiState
+import com.ovidiucristurean.groceries.ui.screen.home.state.RecipeListItemUiState
 
 fun List<RecipeModel>.toUiState() =
     map {

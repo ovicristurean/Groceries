@@ -1,4 +1,4 @@
-package com.ovidiucristurean.groceries.ui.addrecipescreen.state
+package com.ovidiucristurean.groceries.ui.screen.addrecipe.state
 
 data class AddRecipeScreenUiState(
     val recipeName: String = "",
