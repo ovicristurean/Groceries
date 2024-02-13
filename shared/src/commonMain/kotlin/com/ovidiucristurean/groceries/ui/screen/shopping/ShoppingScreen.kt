@@ -27,6 +27,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.text.TextStyle
@@ -94,9 +95,11 @@ class ShoppingScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                modifier = Modifier.circular().clickable {
+                modifier = Modifier.circular().clickable(
+                    enabled = numberOfPortions>1
+                ) {
                     onSubtractClicked()
-                },
+                }.alpha(if(numberOfPortions>1) 1f else 0.5f),
                 painter = rememberVectorPainter(Icons.Default.ArrowDownward),
                 contentDescription = null
             )
@@ -106,7 +109,8 @@ class ShoppingScreen(
                     TextStyle(
                         fontSize = 80.sp,
                     )
-                )
+                ),
+                color = MaterialTheme.colorScheme.onBackground
             )
             Image(
                 modifier = Modifier.circular().clickable {
@@ -139,7 +143,8 @@ class ShoppingScreen(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = ingredient.ingredientMessage
+                        text = ingredient.ingredientMessage,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                 }
             }

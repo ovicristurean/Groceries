@@ -12,10 +12,10 @@ import androidx.compose.ui.text.input.KeyboardType
 @Composable
 fun RecipeItemView(
     ingredientName: String,
-    quantity: Int?,
+    quantity: String,
     measurementUnit: String,
     onIngredientNameChanged: (String) -> Unit,
-    onQuantityChanged: (Int) -> Unit,
+    onQuantityChanged: (String) -> Unit,
     onMeasurementUnitChanged: (String) -> Unit
 ) {
 
@@ -33,9 +33,9 @@ fun RecipeItemView(
 
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = quantity?.toString() ?: "",
+            value = quantity,
             onValueChange = { newValue ->
-                onQuantityChanged(newValue.toInt())
+                onQuantityChanged(newValue)
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text("Quantity") }

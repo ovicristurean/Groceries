@@ -11,11 +11,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
 class ShoppingScreenModel(
-    private val recipeId: Long,
-    private val recipeRepository: RecipeRepository
+    recipeId: Long,
+    recipeRepository: RecipeRepository
 ) : ScreenModel {
 
     private val portions = MutableStateFlow(1)
@@ -39,7 +38,9 @@ class ShoppingScreenModel(
     }
 
     fun decreasePortions() {
-        portions.update { it - 1 }
+        if (portions.value > 1) {
+            portions.update { it - 1 }
+        }
     }
 
     fun toggleIngredient(ingredientIndex: Int, isSelected: Boolean) {

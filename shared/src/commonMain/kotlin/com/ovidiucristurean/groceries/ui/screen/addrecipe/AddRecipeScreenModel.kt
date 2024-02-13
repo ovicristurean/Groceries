@@ -44,7 +44,7 @@ class AddRecipeScreenModel(
         }
     }
 
-    fun onQuantityUpdated(newQuantity: Int) {
+    fun onQuantityUpdated(newQuantity: String) {
         _uiState.update {
             it.copy(
                 currentIngredient = it.currentIngredient.copy(
@@ -85,7 +85,7 @@ class AddRecipeScreenModel(
                     ingredients = uiState.value.addedIngredients.map { recipeItem ->
                         Ingredient(
                             name = recipeItem.ingredient,
-                            quantity = recipeItem.quantity,
+                            quantity = recipeItem.quantity.toIntOrNull()?:0,
                             measurementUnit = recipeItem.measurementUnit
                         )
                     }

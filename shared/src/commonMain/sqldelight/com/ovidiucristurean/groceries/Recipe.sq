@@ -15,3 +15,7 @@ getRecipeById:
 SELECT *
 FROM Recipe
 WHERE id = :id;
+
+deleteRecipe:
+DELETE FROM Recipe
+WHERE id = :id;

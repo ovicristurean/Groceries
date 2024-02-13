@@ -39,7 +39,7 @@ class EditRecipeScreenModel(
         }
     }
 
-    fun editRecipeName(name:String) {
+    fun editRecipeName(name: String) {
         _uiState.update {
             it.copy(
                 recipeName = name
@@ -63,7 +63,7 @@ class EditRecipeScreenModel(
         _uiState.update {
             val ingredientsCopy = it.addedIngredients.toMutableList()
             ingredientsCopy[ingredientIndex] = ingredientsCopy[ingredientIndex].copy(
-                quantity = quantity.toInt()
+                quantity = quantity
             )
             it.copy(
                 addedIngredients = ingredientsCopy
@@ -93,7 +93,7 @@ class EditRecipeScreenModel(
                         ingredients = uiState.value.addedIngredients.map { ingredientUiState ->
                             Ingredient(
                                 name = ingredientUiState.ingredient,
-                                quantity = ingredientUiState.quantity,
+                                quantity = ingredientUiState.quantity.toIntOrNull() ?: 0,
                                 measurementUnit = ingredientUiState.measurementUnit
                             )
                         }

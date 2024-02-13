@@ -28,4 +28,10 @@ class HomeScreenViewModel(
             }
         }
     }
+
+    fun deleteRecipe(recipeId: Long) {
+        screenModelScope.launch {
+            recipeRepository.deleteRecipe(recipeId)
+        }
+    }
 }

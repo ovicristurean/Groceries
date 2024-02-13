@@ -22,6 +22,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
@@ -58,12 +59,14 @@ class AddRecipeScreen : Screen {
         {
             Row(
                 modifier = Modifier.fillMaxWidth()
-                    .height(100.dp)
-                    .background(MaterialTheme.colorScheme.inversePrimary),
+                    .height(100.dp),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Recipe name")
+                Text(
+                    text = "Recipe name",
+                    color = MaterialTheme.colorScheme.onBackground
+                )
                 Spacer(modifier = Modifier.width(8.dp))
                 TextField(
                     value = uiState.recipeName,
@@ -110,10 +113,10 @@ class AddRecipeScreen : Screen {
 private fun AddIngredientSection(
     modifier: Modifier = Modifier,
     ingredientName: String,
-    quantity: Int?,
+    quantity: String,
     measurementUnit: String,
     onIngredientNameChanged: (String) -> Unit,
-    onQuantityChanged: (Int) -> Unit,
+    onQuantityChanged: (String) -> Unit,
     onMeasurementUnitChanged: (String) -> Unit,
     onIngredientConfirmed: () -> Unit
 ) {
@@ -155,13 +158,18 @@ private fun RecipeResultSection(
         modifier = modifier,
         contentAlignment = Alignment.Center
     ) {
-        LazyColumn {
+        LazyColumn(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             items(recipeItems) { recipeItem ->
                 Text(
-                    text = "${recipeItem.ingredient}; ${recipeItem.quantity} ${recipeItem.measurementUnit}"
+                    text = "${recipeItem.ingredient}; ${recipeItem.quantity} ${recipeItem.measurementUnit}",
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onBackground
+
                 )
             }
-
 
             item {
                 Button(

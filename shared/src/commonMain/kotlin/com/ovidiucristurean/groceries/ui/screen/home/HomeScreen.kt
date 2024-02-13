@@ -45,6 +45,9 @@ class HomeScreen : Screen {
                 },
                 onEditRecipeSelected = {
                     navigator.push(EditRecipeScreen(it))
+                },
+                onDeleteRecipeSelected = {
+                    viewModel.deleteRecipe(it)
                 }
             )
         }

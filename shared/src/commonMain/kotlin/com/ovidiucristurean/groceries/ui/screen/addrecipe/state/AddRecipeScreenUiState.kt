@@ -4,7 +4,7 @@ data class AddRecipeScreenUiState(
     val recipeName: String = "",
     val currentIngredient: RecipeItemUiState = RecipeItemUiState(
         ingredient = "",
-        quantity = null,
+        quantity = "",
         measurementUnit = ""
     ),
     val addedIngredients: List<RecipeItemUiState> = emptyList()

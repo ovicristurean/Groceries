@@ -64,7 +64,7 @@ class RecipeRepositoryImpl(
             }
     }
 
-    override suspend fun editRecipe(recipe: RecipeModel):Boolean {
+    override suspend fun editRecipe(recipe: RecipeModel): Boolean {
         try {
             withContext(Dispatchers.Default) {
                 queries.insertRecipe(
@@ -73,7 +73,7 @@ class RecipeRepositoryImpl(
                     ingredients = Json.encodeToJsonElement(recipe.ingredients).toString()
                 )
             }
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             if (e is CancellationException) throw e
             return false
         }
@@ -81,4 +81,18 @@ class RecipeRepositoryImpl(
         return true
     }
 
+    override suspend fun deleteRecipe(recipeId: Long): Boolean {
+        try {
+            withContext(Dispatchers.Default) {
+                queries.deleteRecipe(
+                    id = recipeId
+                )
+            }
+        } catch (e: Exception) {
+            if (e is CancellationException) throw e
+            return false
+        }
+
+        return true
+    }
 }

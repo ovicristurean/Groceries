@@ -7,7 +7,7 @@ fun RecipeModel.toIngredientsUiState() =
     ingredients.map { ingredient ->
         RecipeItemUiState(
             ingredient = ingredient.name,
-            quantity = ingredient.quantity,
+            quantity = ingredient.quantity.toString(),
             measurementUnit = ingredient.measurementUnit
         )
     }

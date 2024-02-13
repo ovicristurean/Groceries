@@ -11,6 +11,8 @@ interface RecipeRepository {
 
     fun getRecipe(recipeId: Long): Flow<RecipeModel>
 
-    suspend fun editRecipe(recipe:RecipeModel):Boolean
+    suspend fun editRecipe(recipe: RecipeModel): Boolean
+
+    suspend fun deleteRecipe(recipeId: Long): Boolean
 
 }

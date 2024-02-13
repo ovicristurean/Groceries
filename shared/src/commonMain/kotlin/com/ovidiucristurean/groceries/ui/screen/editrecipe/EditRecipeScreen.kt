@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
@@ -70,7 +72,10 @@ class EditRecipeScreen(
                 verticalArrangement = Arrangement.spacedBy(32.dp)
             ) {
                 item {
-                    Text("Ingredients:")
+                    Text(
+                        text = "Ingredients:",
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
                 itemsIndexed(uiState.addedIngredients) { index, ingredient ->
                     IngredientView(
@@ -133,6 +138,7 @@ class EditRecipeScreen(
                         onValueChange = { newValue ->
                             onQuantityChanged(newValue)
                         },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         label = { Text("Quantity") }
                     )
                     TextField(
