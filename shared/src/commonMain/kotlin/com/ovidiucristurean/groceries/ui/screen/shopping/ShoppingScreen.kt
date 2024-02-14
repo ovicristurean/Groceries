@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
+import com.ovidiucristurean.groceries.ui.commonview.BackHeader
 import com.ovidiucristurean.groceries.ui.screen.shopping.state.IngredientUiState
 import org.koin.core.parameter.parametersOf
 
@@ -51,6 +52,8 @@ class ShoppingScreen(
                 .background(MaterialTheme.colorScheme.background)
                 .padding(16.dp),
         ) {
+            BackHeader()
+
             AdjustPortionsView(
                 modifier = Modifier.fillMaxWidth(),
                 numberOfPortions = uiState.numberOfPortions,

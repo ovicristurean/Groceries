@@ -13,8 +13,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -23,13 +26,18 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.ovidiucristurean.groceries.ui.commonview.BackHeader
 import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.NavigationEvent
 import com.ovidiucristurean.groceries.ui.screen.addrecipe.state.RecipeItemUiState
 import com.ovidiucristurean.groceries.ui.screen.addrecipe.view.RecipeItemView
@@ -54,19 +62,24 @@ class AddRecipeScreen : Screen {
                 }
             }
         }
+        val focusManager = LocalFocusManager.current
 
         Column(
             modifier = Modifier.fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
                 .padding(8.dp),
         ) {
-            TextField(
+            BackHeader()
+
+            OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = uiState.recipeName,
                 onValueChange = { newValue ->
                     viewModel.onRecipeNameUpdated(newValue)
                 },
                 label = { Text("Recipe name") },
+                keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
+                keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),
                 maxLines = 1
             )
 
@@ -83,7 +96,6 @@ class AddRecipeScreen : Screen {
             Spacer(modifier = Modifier.height(16.dp))
 
             AddIngredientSection(
-                modifier = Modifier.fillMaxSize().weight(1f),
                 ingredientName = uiState.currentIngredient.ingredient,
                 quantity = uiState.currentIngredient.quantity,
                 measurementUnit = uiState.currentIngredient.measurementUnit,
@@ -100,10 +112,13 @@ class AddRecipeScreen : Screen {
                     viewModel.addIngredient()
                 }
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
             ItemSpacer()
 
             RecipeResultSection(
-                modifier = Modifier.fillMaxSize().weight(1f),
+                modifier = Modifier.fillMaxSize(),
                 recipeItems = uiState.addedIngredients,
                 onRecipeConfirmed = {
                     viewModel.addRecipe()
@@ -168,7 +183,7 @@ private fun RecipeResultSection(
         ) {
             items(recipeItems) { recipeItem ->
                 Text(
-                    text = "${recipeItem.ingredient}; ${recipeItem.quantity} ${recipeItem.measurementUnit}",
+                    text = "${recipeItem.ingredient}: ${recipeItem.quantity} ${recipeItem.measurementUnit}",
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onBackground
 

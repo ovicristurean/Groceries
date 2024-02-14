@@ -7,7 +7,7 @@ fun List<Ingredient>.toUiState(numberOfPortions: Int, checkedIngredients: Mutabl
     mapIndexed { index, ingredient ->
         IngredientUiState(
             ingredientMessage = "${ingredient.name}, " +
-                    "${(ingredient.quantity ?: 1) * numberOfPortions} " +
+                    "${ingredient.quantity * numberOfPortions} " +
                     ingredient.measurementUnit,
             isChecked = checkedIngredients.contains(index)
         )

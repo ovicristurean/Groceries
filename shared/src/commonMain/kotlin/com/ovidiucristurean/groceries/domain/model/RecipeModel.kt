@@ -13,6 +13,6 @@ data class RecipeModel(
 @Serializable
 data class Ingredient(
     val name: String,
-    val quantity: Int,
+    val quantity: Float,
     val measurementUnit: String
 )

@@ -1,6 +1,7 @@
 package com.ovidiucristurean.groceries.ui.screen.home
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -34,7 +36,10 @@ class HomeScreen : Screen {
                         navigator.push(AddRecipeScreen())
                     }
                 ) {
-                    Text("Add recipe")
+                    Text(
+                        modifier = Modifier.padding(4.dp),
+                        text = "Add recipe"
+                    )
                 }
             }
         ) {

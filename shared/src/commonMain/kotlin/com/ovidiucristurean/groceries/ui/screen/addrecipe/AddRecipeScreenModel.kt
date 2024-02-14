@@ -57,7 +57,7 @@ class AddRecipeScreenModel(
         _uiState.update {
             it.copy(
                 currentIngredient = it.currentIngredient.copy(
-                    quantity = newQuantity
+                    quantity = newQuantity.replace(",",".")
                 )
             )
         }
@@ -94,7 +94,7 @@ class AddRecipeScreenModel(
                     ingredients = uiState.value.addedIngredients.map { recipeItem ->
                         Ingredient(
                             name = recipeItem.ingredient,
-                            quantity = recipeItem.quantity.toIntOrNull() ?: 0,
+                            quantity = recipeItem.quantity.toFloatOrNull() ?: 0f,
                             measurementUnit = recipeItem.measurementUnit
                         )
                     },

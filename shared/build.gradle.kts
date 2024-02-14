@@ -40,6 +40,7 @@ kotlin {
                 implementation(libs.voyager.navigator)
                 implementation(libs.voyager.tab.navigator)
                 implementation(libs.voyager.koin)
+                implementation(libs.voyager.transitions)
 
                 implementation(libs.kotlinx.serialization.json)
 
