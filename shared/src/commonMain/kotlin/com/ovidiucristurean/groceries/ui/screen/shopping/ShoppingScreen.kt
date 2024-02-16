@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +38,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import com.ovidiucristurean.groceries.ui.commonview.BackHeader
 import com.ovidiucristurean.groceries.ui.screen.shopping.state.IngredientUiState
+import com.ovidiucristurean.groceries.ui.util.copyToClipboard
 import org.koin.core.parameter.parametersOf
 
 class ShoppingScreen(
@@ -76,10 +78,17 @@ class ShoppingScreen(
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
-                modifier = Modifier.padding(bottom = 32.dp),
+                modifier = Modifier.padding(bottom = 16.dp),
                 text = uiState.description,
                 color = MaterialTheme.colorScheme.onBackground
             )
+
+            Button(modifier = Modifier.fillMaxWidth().padding(bottom = 32.dp),
+                onClick = {
+                    viewModel.saveToClipboard()
+                }) {
+                Text("Copy to clipboard")
+            }
         }
     }
 

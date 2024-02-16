@@ -109,6 +109,7 @@ class AddRecipeScreen : Screen {
                     viewModel.onMeasurementUnitUpdated(measurementUnit)
                 },
                 onIngredientConfirmed = {
+                    focusManager.clearFocus()
                     viewModel.addIngredient()
                 }
             )
