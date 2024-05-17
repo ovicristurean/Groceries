@@ -38,7 +38,8 @@ val commonModule = module {
     factory { parameters ->
         ShoppingScreenModel(
             recipeId = parameters.get(),
-            recipeRepository = get()
+            recipeRepository = get(),
+            clipboardSaver = get()
         )
     }
 

@@ -1,13 +1,12 @@
 package com.ovidiucristurean.groceries.ui.screen.shopping
 
-import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.ovidiucristurean.groceries.domain.RecipeRepository
 import com.ovidiucristurean.groceries.ui.screen.shopping.mapper.toClipboardUiState
 import com.ovidiucristurean.groceries.ui.screen.shopping.mapper.toUiState
 import com.ovidiucristurean.groceries.ui.screen.shopping.state.ShoppingScreenUiState
-import com.ovidiucristurean.groceries.ui.util.copyToClipboard
+import com.ovidiucristurean.groceries.ui.util.ClipboardSaver
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +16,8 @@ import kotlinx.coroutines.flow.update
 
 class ShoppingScreenModel(
     recipeId: Long,
-    recipeRepository: RecipeRepository
+    recipeRepository: RecipeRepository,
+    private val clipboardSaver: ClipboardSaver
 ) : ScreenModel {
 
     private val portions = MutableStateFlow(1)
@@ -64,6 +64,6 @@ class ShoppingScreenModel(
     }
 
     fun saveToClipboard() {
-        copyToClipboard(clipboardFormattedRecipe)
+        clipboardSaver.saveToClipboard(clipboardFormattedRecipe)
     }
 }

@@ -38,7 +38,6 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import com.ovidiucristurean.groceries.ui.commonview.BackHeader
 import com.ovidiucristurean.groceries.ui.screen.shopping.state.IngredientUiState
-import com.ovidiucristurean.groceries.ui.util.copyToClipboard
 import org.koin.core.parameter.parametersOf
 
 class ShoppingScreen(
