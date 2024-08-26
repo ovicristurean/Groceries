@@ -6,6 +6,8 @@ plugins {
     kotlin("plugin.serialization")
 }
 
+apply<ThemeProviderPlugin>()
+
 kotlin {
     androidTarget {
         compilations.all {
@@ -51,6 +53,8 @@ kotlin {
 
                 //both sql delight and koin provide this as a subdependency and cause issues
                 implementation("co.touchlab:stately-common:2.0.5")
+
+                implementation(libs.ktor.client.core)
             }
         }
         val commonTest by getting {
@@ -64,6 +68,7 @@ kotlin {
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.koin.android)
                 implementation(libs.sql.delight.android)
+                implementation(libs.ktor.client.okhttp)
             }
         }
         val androidUnitTest by getting
