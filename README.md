@@ -1,4 +1,6 @@
 **Proof of concept Kotlin Multiplaform app for updating the design with themed data from a server, using a Gradle plugin**
+
+
 You can call the `refreshTheme` task, which has a path argument to specify where you want your theme data to be saved, like this:
 `./gradlew refreshTheme -PthemePath=com/ovidiucristurean/groceries/ui/theme`
 This will download the `Color.kt`, `Theme.kt` and `Type.kt` files and place them at the specified path:
