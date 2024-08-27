@@ -4,9 +4,8 @@ plugins {
     id("org.jetbrains.compose")
     id("app.cash.sqldelight")
     kotlin("plugin.serialization")
+    id("com.ovidiucristurean.theme-provider-plugin")
 }
-
-apply<ThemeProviderPlugin>()
 
 kotlin {
     androidTarget {

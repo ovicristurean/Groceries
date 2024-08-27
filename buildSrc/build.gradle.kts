@@ -5,6 +5,16 @@ repositories {
 plugins {
     `kotlin-dsl`
     kotlin("plugin.serialization") version "1.9.21"
+    `java-gradle-plugin`
+}
+
+gradlePlugin {
+    plugins {
+        create("themeProviderPlugin") {
+            id = "com.ovidiucristurean.theme-provider-plugin"
+            implementationClass = "ThemeProviderPlugin"
+        }
+    }
 }
 
 dependencies {
